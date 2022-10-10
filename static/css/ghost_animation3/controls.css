@@ -1,0 +1,215 @@
+
+
+.icon-button {
+    background: rgba(255,255,255,0);
+    width:  40px;
+    height:  40px;
+    border-radius: 50%;
+    transition:  transform .3s;
+}
+
+
+.icon-button:hover {
+    transform: scale(1.125);
+    cursor: pointer;
+}
+
+
+
+/* Controls 
+------------------------------*/
+
+#controls {
+    width:  90px;
+    position: absolute;
+    bottom:  40px;
+    right:  -50px;
+    padding:  10px;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    font-size: .688em;
+    
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color:  #fff;
+
+    pointer-events: none;
+    opacity: 0;
+
+    transition: right .2s, opacity .2s;
+
+}
+
+
+[controls] #controls{
+    /*height: 160px;*/
+    right:  10px;
+    display: inline-block;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+
+@media only screen and (min-width: 1400px) {
+    #controls {
+        width:  120px;
+        font-size: .813em;
+    }
+
+    .checkmark,
+    .radio-button {
+        top:  3.5px;
+    }
+}
+
+#controls hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, .2);
+}
+
+
+
+
+
+
+/* Controls Button
+------------------------------*/
+
+#controls-button {
+    position: absolute;
+    bottom: 15px;
+    right:  15px;
+}
+
+
+
+
+
+
+
+#controls-button span {
+    transition: .3s;
+}
+
+#controls-button span:nth-child(1),
+#controls-button span:nth-child(2),
+#controls-button span:nth-child(3) {
+    position: absolute;
+    width:  20px;
+    height:  2.5px;
+    background: #fff;
+    left:  10.51px;
+}
+
+#controls-button span:nth-child(1) {
+    top:  12px;
+}
+
+#controls-button span:nth-child(2) {
+    top:  19px;
+}
+
+
+#controls-button span:nth-child(3) {
+    top:  26px;
+}
+
+
+#controls-button span:nth-child(4),
+#controls-button span:nth-child(5),
+#controls-button span:nth-child(6) {
+    position: absolute;
+    width:  2.5px;
+    height:  6px;
+    background: #fff;
+    left:  11px;
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.15);
+}
+
+#controls-button span:nth-child(4) {
+    top:  10px;
+    left: 23px;
+}
+
+#controls-button span:nth-child(5) {
+    top:  17px;
+    left: 15px;
+}
+
+#controls-button span:nth-child(6) {
+    top:  24px;
+    left: 20px;
+}
+
+
+
+
+
+
+/* Style Option 1 */
+
+[controls] #controls-button span:nth-child(1) {
+   width: 10px;
+   transform: rotate(45deg);
+   top:  16px;
+   left:  16px;
+}
+
+[controls] #controls-button span:nth-child(2) {
+   width: 12px;
+
+  /* opacity: 0;*/
+}
+
+[controls] #controls-button span:nth-child(3) {
+   width: 10px;
+   transform: rotate(-45deg);
+   top:  22px;
+   left:  16px;
+}
+
+[controls] #controls-button span:nth-child(4) {
+   display: none;
+}
+
+[controls] #controls-button span:nth-child(5) {
+   left: 28px;
+   height: 12px;
+   top: 14px;
+
+   /*opacity: 0;*/
+}
+
+[controls] #controls-button span:nth-child(6) {
+   display: none;
+}
+
+
+
+/* Style Option 2 */
+
+/*[controls] #controls-button span:nth-child(1) {
+   transform: rotate(45deg);
+   top:  19px;
+   left:  10px;
+}
+
+[controls] #controls-button span:nth-child(3) {
+   transform: rotate(-45deg);
+   top:  19px;
+   left:  10px;
+}
+
+
+
+[controls] #controls-button span:nth-child(2),
+[controls] #controls-button span:nth-child(4),
+[controls] #controls-button span:nth-child(5),
+[controls] #controls-button span:nth-child(6) {
+   display: none;
+}
+*/
+

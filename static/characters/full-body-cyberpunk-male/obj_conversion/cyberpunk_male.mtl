@@ -1,0 +1,118 @@
+# Blender MTL File: 'None'
+# Material Count: 10
+
+newmtl Wolf3D_Beard
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/beard_13_normal.png
+map_Kd /textures/beard_color.jpg
+
+newmtl Wolf3D_Body
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/Wolf3D_body_N.jpg
+map_Kd /textures/body_texture.jpg
+
+newmtl Wolf3D_Eye
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /textures/1604398935-eye3.jpg
+
+newmtl Wolf3D_Glasses
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /textures/glasses_id_6_D.png
+map_d /textures/glasses_id_6_D.png
+
+newmtl Wolf3D_Hair
+Ns 78.564027
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/Image_0.png
+map_Kd /textures/hair_color.jpg
+
+newmtl Wolf3D_Outfit_Bottom
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/Cyberpunk_Office_Outfit_Bottom_N.jpg
+map_Kd /textures/Cyberpunk_Office_Outfit_Bottom_D.jpg
+
+newmtl Wolf3D_Outfit_Footwear
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/shoes_01_N.jpg
+map_Kd /textures/shoes_01_D.jpg
+
+newmtl Wolf3D_Outfit_Top
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /textures/Cyberpunk_Office_Outfit_Top_N.jpg
+map_Kd /textures/Cyberpunk_Office_Outfit_Top_D.jpg
+
+newmtl Wolf3D_Skin
+Ns 81.000006
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /textures/face_texture.jpg
+
+newmtl Wolf3D_Teeth
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2

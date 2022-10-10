@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PsyberPunkt</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <!-- <link rel="stylesheet" type="text/css" href="base.css"> -->
+  <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/base.css') }}"/> -->
+  <link rel= "stylesheet" type= "text/css" href= "/static/css/cyberpunk-2077.css"/>
+
+  <script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<style type="text/css">
+  
+@font-face {
+  font-family: "My Custom Font";
+  src: url('/static/fonts/Cyberpunk.ttf');
+}
+.cyberpunk_font { 
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 200%;
+  color: #f902ea;
+}
+
+      #android_buttons{
+        position: absolute;
+        left: 5vw;
+        bottom: 2vh;
+      }
+
+      .hidden{
+        display: none;
+      }
+      .vissible{
+        display: block;
+      }
+
+/*      @media only screen and (orientation:portrait){
+        body {
+          height: 100vw;
+          transform: rotate(90deg);
+        }
+      }*/
+
+
+
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  /*background-color: #111;*/
+}
+
+.right {
+  right: 0;
+  /*background-color: red;*/
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.centeredt {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.centeredl {
+  position: absolute;
+  bottom: 10%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  /*background-color: pink;*/
+}
+
+
+.botomLeft {
+  position: absolute;
+  width: 20%;
+  height: 40%;
+  bottom: 0%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  /*text-align: center;*/
+  /*background-color: pink;*/
+}
+
+
+
+
+
+.centeredr {
+  position: absolute;
+  bottom: 10%;
+  right: 20%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+
+#tiltPanel{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 70%;
+  height: 70%;
+    /*background-color: green;*/
+
+}
+
+
+
+    #warning-message { display: none; }
+
+    @media only screen and (orientation:portrait){
+
+        #wrapper { display:none; }
+
+        #warning-message { display:block; }
+
+    }
+
+    @media only screen and (orientation:landscape){
+
+        #warning-message { display:none; }
+
+    }
+
+
+
+
+
+
+
+
+/* button layout */
+.directional-buttons {
+  /* Define the size of the grid */
+  /* Other things rely on this! Change at your own peril! */
+  width: 16rem;
+  height: 16rem;
+  /* display the buttons in a grid */
+  display: grid;
+  /* leave a little gap between columns/rows */
+  grid-gap: 0.5rem;
+  /* define a 3 x 3 grid with middle column/row larger */
+  grid-template-columns: 45fr 60fr 45fr;
+  grid-template-rows: 45fr 60fr 45fr;
+  /* name the cells in the grid */
+  grid-template-areas: "....  up  ....."
+                       "left  ..  right"
+                       ".... down .....";    
+}
+
+/* hides the button text */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; 
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* base button */
+.direction-button {
+  /* the button colours */
+  color: rgb(55, 50, 50);
+  /* since there's no text, we can use the color value for the background */
+  background: currentcolor;
+  /* clears default button styles */
+  border: none;
+  /* makes sure the triangles are moved relative to the button */
+  position: relative;
+}
+
+/* the overlapping outside triangle 
+ * actually, it's just a rotated square
+ */
+.direction-button:before {
+  /* make the triangle display */
+  display: block;
+  content: "";
+  /* make the triangle able to be moved around relative to the button */
+  position: absolute;
+  /* approximately makes the diagonal the right size */
+  width: 4.25rem;
+  height: 4.25rem;
+  /* rotate the square (to look like a triangle) */
+  transform: rotate(45deg);
+  /* use the current color value for the background to match the button */
+  background: currentcolor;
+}
+
+/* the inner direction triangle */
+.direction-button:after {
+  /* make the triangle display */
+  display: block;
+  content: "";
+  /* make the triangle able to be moved around relative to the button */
+  position: absolute;
+  /* same border-based triangle trick as before */
+  border: 2rem solid transparent;
+  /* using color value for border-color to make it easier to change */
+  color: rgba(255, 250, 250, 0.6);
+}
+
+/* when the button is hovered */
+.direction-button:hover {
+  /* make the button a different color */
+  color: rgb(85,55,55);
+}
+
+/* when the button is pressed */
+.direction-button:active:after {
+  /* make the inner triangle a different color! */
+  color: rgb(255, 152, 152);
+}
+
+/* individual button styles */
+.up {
+  /* puts the button in the named grid cell */
+  grid-area: up;
+  /* only curves the outer corners */
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.up:before {
+  /* center the overlapping triangle horizontally */
+  left: calc(50% - 2.125rem);
+  /* position it so it overlaps just right */
+  bottom: -2.125rem;
+}
+.up:after {
+  /* do the border-based triangle trick */
+  border-bottom-color: currentcolor;
+  /* center inner triangle horizontally */
+  left: calc(50% - 2rem);
+  /* position it just right */
+  top: -1rem;
+}
+
+.left {
+  /* puts the button in the named grid cell */
+  grid-area: left;
+  /* only curves the outer corners */
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.left:before {
+  /* position it so it overlaps just right */
+  right: -2.125rem;
+  /* center the overlapping triangle vertically */
+  top: calc(50% - 2.125rem);
+}
+.left:after {
+  /* do the border-based triangle trick */
+  border-right-color: currentcolor;
+  /* center inner triangle vertically */
+  top: calc(50% - 2rem);
+  /* position it just right */
+  left: -1rem;
+}
+
+.right {
+  /* puts the button in the named grid cell */
+  grid-area: right;
+  /* only curves the outer corners */
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.right:before {
+  /* position it so it overlaps just right */
+  left: -2.125rem;
+  /* center the overlapping triangle vertically */
+  top: calc(50% - 2.125rem);
+}
+.right:after {
+  /* do the border-based triangle trick */
+  border-left-color: currentcolor;
+  /* center inner triangle vertically */
+  top: calc(50% - 2rem);
+  /* position it just right */
+  right: -1rem;
+}
+
+.down {
+  /* puts the button in the named grid cell */
+  grid-area: down;
+  /* only curves the outer corners */
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.down:before {
+  /* center the overlapping triangle horizontally */
+  left: calc(50% - 2.125rem);
+  /* position it so it overlaps just right */
+  top: -2.125rem;
+}
+.down:after {
+  /* do the border-based triangle trick */
+  border-top-color: currentcolor;
+  /* center inner triangle horizontally */
+  left: calc(50% - 2rem);
+  /* position it just right */
+  bottom: -1rem;
+}
+
+
+
+
+/* other styles */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: darkgrey;
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<body>
+    <a href="/"><b><h1 class="cyberpunk glitched cyberpunk_font" style="color: #f902ea; top: 0%; position: absolute; font-size: 500%; z-index: 99; text-shadow: -1px 0 black, 0 5px black, 5px 0 black, 0 -1px black;;">PsyberPunkt</h1></b></a>
+
+    <aside class="cyberpunk">
+      <ul>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">&#9760;Logout</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">&#9760;Profile</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">💬 Chat</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">💀Login</h3></a></li>
+        
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">&#x267B; Register</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">🛒Cart {{cart_total}}</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">🏪Shop</h3></a></li>
+        <li><a href="#"><h3 class="cyberpunk scannedv glitched">&#x2622; Contact us</h3></a></li>
+      </ul>
+    </aside>  
+
+
+
+
+
+
+  <!-- <audio id="audio" preload="auto" style="display: none"> -->
+    <!-- <source src="../static/sound/376737_Skullbeatz___Bad_Cat_Maste.ogg" type="audio/ogg"> -->
+    <!-- <source src="../static/sound/376737_Skullbeatz___Bad_Cat_Maste.mp3" type="audio/mpeg"> -->
+    <!-- <source src="../static/sound/Infected Mushroom & WHITENO1SE - More Of Just The Same.webm" type="audio/mpeg"> -->
+    <!-- <source src="../static/sound/HEADROOM (SA) - Live @ Origin Festival 2022 (Official Video).aac" type="audio/mpeg"> -->
+    <!-- <source id="audioSource" src="../static/sound/Headroom - Edisons Medicine.mp4" type="audio/mpeg"> -->
+  <!-- </audio> -->
+
+
+
+<!-- <iframe id="music" type="text/html" width="0" height="0"
+  src="https://www.youtube.com/embed/FJYsLG4SZtY?autoplay=1"
+  frameborder="0" style="display: none">
+    
+</iframe> -->
+
+
+
+<!-- <div id="ytplayer" style="display: none"></div>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '360',
+      width: '640',
+      videoId: 'N70AlgvKenk'
+    });
+  }
+</script> -->
+<!-- 
+<div id="ytplayer" style="display: none;"></div>
+<script async src="https://www.youtube.com/iframe_api"></script>
+<script>
+var player;
+var videoId='N70AlgvKenk';
+var startSeconds = 12;  // set your own video start time when loop play
+var endSeconds = 150;   // set your own video end time when loop play
+var playerConfig = {
+  height: '250',
+  width: '100%',
+  videoId: videoId,
+  playerVars: {
+
+    autoplay: 1,            // Auto-play the video on load
+    controls: 0,            // Show pause/play buttons in player
+    showinfo: 0,            // Hide the video title
+    modestbranding: 1,      // Hide the Youtube Logo
+    fs: 1,                  // Hide the full screen button
+    cc_load_policy: 0,      // Hide closed captions
+    iv_load_policy: 3,      // Hide the Video Annotations
+    start: startSeconds,
+    end: endSeconds,
+    autohide: 0, // Hide video controls when playing
+  },
+  events: {
+       'onStateChange': onStateChange,       // reference to Iframe API
+        onReady: function(e) {              // mute the video when loaded
+        e.target.mute();             
+      }
+    }
+};
+//excute the video in div
+function onYouTubePlayerAPIReady() {
+
+  player = new YT.Player('ytplayer', playerConfig);
+
+}
+//repload the video when onStateChange=YT.PlayerState.ENDED)
+function onStateChange(state) {
+  if (state.data === YT.PlayerState.ENDED) {
+    player.loadVideoById({
+      videoId: videoId,
+      startSeconds: startSeconds,
+      endSeconds: endSeconds
+
+    });
+  }
+}
+
+</script>
+
+
+ -->
+
+
+
+
+  <video loop id="dj_box_video" autoplay style="display:none">
+     <!-- <source src="../static/video/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'> -->
+
+      <!-- <source id="videoSource" src="{{ url_for('static',filename='video/sintel.ogv') }}" type='video/ogg; codecs="theora, vorbis"'> -->
+  </video>
+
+  <!-- <video loop id="myVideo2" autoplay style="display:none"> -->
+     <!-- <source src="../static/video/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'> -->
+
+      <!-- <source id="videoSource" src="{{ url_for('static',filename='video/sintel.ogv') }}" type='video/ogg; codecs="theora, vorbis"'> -->
+  <!-- </video> -->
+
+
+
+
+
+
+
+<div id="warning-message">
+  <div>
+      <img src="https://scontent-cpt1-1.xx.fbcdn.net/v/t1.6435-9/130086829_3971236142905134_5859022853787319448_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=730e14&_nc_ohc=WdZU9J9HuLAAX-om-Wq&_nc_ht=scontent-cpt1-1.xx&oh=00_AT9MLotGG5qSnqtL8WbvtR4ignXRwN_V9uEKzK3rwT64lQ&oe=62BAADD9">
+    </div>
+    <!-- 
+
+https://scontent-cpt1-1.xx.fbcdn.net/v/t1.6435-9/130904203_3971236269571788_5800122927608846852_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=730e14&_nc_ohc=H8YScgUZIKIAX8v_VJK&_nc_ht=scontent-cpt1-1.xx&oh=00_AT-Gr95AftA8O5ZiNTbbBonuCbq8m_lIaHYoPY6OR5rD5g&oe=62B938DE
+
+     -->
+ </div>
+
+
+
+  <div id="wrapper">
+
+    <div id="controls_panel_left" class="split left">
+      <!-- <div id="top_l_heading" class="centeredt">sdsfsd</div> -->
+      <div class="botomLeft">
+        <div id="android_buttons" class="vissible">
+          <div class="directional-buttons">
+            <button id="arrow_up" class="direction-button up">
+              <span class="visually-hidden">up</span>
+            </button>
+            <button id="arrow_left" class="direction-button left">
+              <span class="visually-hidden">left</span>
+            </button>
+            <button id="arrow_right" class="direction-button right">
+              <span class="visually-hidden">right</span>
+            </button>
+            <button id="arrow_down" class="direction-button down">
+              <span class="visually-hidden">down</span>
+            </button>
+          </div>
+        </div>
+        <button id="run_toggle" style="position: absolute; border-radius: 50%; font-size: 60px; top: -30%; margin: 20px; background-color: #373232; color: #afaaaa;">O</button>
+      </div>
+    </div>
+
+    <div id="controls_panel_right" class="split right">
+
+      <!-- <div id="top_r_heading" class="centeredt">sdsfsd</div> -->
+        <!-- <div id="tiltPanel" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)" ontouchmove="handleTouchMove(event)"> -->
+        <div id="tiltPanel">
+        </div>
+      <div class="centeredr">
+        
+          <div id="overlay">
+            <button id="startButton">Play</button>
+          </div>
+          <button id="run" style="border-radius: 50%; font-size: 60px; margin: 20px; background-color: #373232; color: #afaaaa;">O</button>
+          <button id="jump" style="border-radius: 50%; font-size: 60px; margin: 20px; background-color: #373232; color: #afaaaa;">O</button>
+          <button id="dance" style="border-radius: 50%; font-size: 60px; margin: 20px; background-color: #373232; color: #afaaaa;">O</button>
+      </div>
+
+    </div>
+       
+  </div>
+
+
+
+
+
+  </body>
+
+  <script type="text/javascript">
+    
+$(function() { // Wait for page to finish loading.
+  // var android_buttons = $('#android_buttons');
+    if(navigator != undefined && navigator.userAgent != undefined) {
+        user_agent = navigator.userAgent.toLowerCase();
+        if(user_agent.indexOf('android') > -1) { // Is Android.
+            $(document.body).addClass('android');
+            $('#android_buttons').addClass('vissible');
+
+        }
+    }
+});
+
+  </script>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+    <!-- Import maps polyfill -->
+    <!-- Remove this when import maps will be widely supported -->
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+        
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./static/js/threejs/three.module.js"
+        }
+      }
+    </script>
+
+
+
+
+
+
+  <!-- <script src="./main.js" type="module"> -->
+  <script type="module" src="/static/js/main.js"></script>
+  </script>
+</body>
+</html>
