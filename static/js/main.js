@@ -1555,7 +1555,7 @@ class ThirdPersonCameraDemo {
   // video = document.createElement( 'video' );
   // video.id = 'video';
   video1.type = ' video/mp4; codecs="theora, vorbis" ';
-  video1.src = "../static/sound/Headroom_Y2K_Hole.mp4";
+  video1.src = "https://www.youtube.com/watch?v=NqJ2zZPkODg";
   // video2.src = "../static/sound/Headroom_Y2K_Hole.mp4";
   video1.load(); // must call after setting/changing source
   // video2.load(); // must call after setting/changing source
